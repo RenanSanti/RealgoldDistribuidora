@@ -122,6 +122,7 @@ public class DAOServico {
                     Integer isCasaLente = resultset.getInt("isLenteCasa");
                     Integer isMontagem = resultset.getInt("isMontagem");
                     Integer isSurfacagem = resultset.getInt("isSurfacagem");
+                    String osCliente = resultset.getString("osCliente");
 
                     Timestamp dhInclusao = resultset.getTimestamp("dataEntrada");
                     Timestamp dhSaida = resultset.getTimestamp("dataSaida");
@@ -137,8 +138,10 @@ public class DAOServico {
                     servico.setCodigoServico(Integer.toString(idServico));
                     servico.setNmclienteServico(nmCliente);
                     servico.setDiaEntradaServico(String.valueOf(dhInclusao));
-                    if (dhSaida != null) 
+                    servico.setOsCliente(osCliente);
+                    if (dhSaida != null) {
                         servico.setDiaSaidaServico(String.valueOf(dhSaida));
+                    }
                     if (stObs != null) {
                         servico.setObs(stObs);
                     }
@@ -202,11 +205,20 @@ public class DAOServico {
             conector = " \n AND ";
             where_sql = "";
         }
-        if (pServico.getDiaEntradaServico() != null && !pServico.getDiaEntradaServico().equals("")) {
-            consultar_sql = consultar_sql + where_sql + conector + "distribuidora.servico.dataEntrada = ? ";
-        }
-        if (pServico.getDiaSaidaServico() != null && !pServico.getDiaSaidaServico().equals("")) {
-            consultar_sql = consultar_sql + where_sql + conector + "distribuidora.servico.dataSaida = ? ";
+        if ((pServico.getDiaEntradaServico() != null && !pServico.getDiaEntradaServico().equals(""))
+                && (pServico.getDiaSaidaServico() != null && !pServico.getDiaSaidaServico().equals(""))) {
+            consultar_sql = consultar_sql + where_sql + conector + "distribuidora.servico.dataEntrada >= ? AND distribuidora.servico.dataEntrada <=? ";
+        } else {
+            if (pServico.getDiaEntradaServico() != null && !pServico.getDiaEntradaServico().equals("")) {
+                consultar_sql = consultar_sql + where_sql + conector + "distribuidora.servico.dataEntrada = ? ";
+                conector = " \n AND ";
+                where_sql = "";
+            }
+            if (pServico.getDiaSaidaServico() != null && !pServico.getDiaSaidaServico().equals("")) {
+                consultar_sql = consultar_sql + where_sql + conector + "distribuidora.servico.dataSaida = ? ";
+                conector = " \n AND ";
+                where_sql = "";
+            }
         }
         consultar_sql = consultar_sql + consulta_order_by;
 
@@ -218,11 +230,17 @@ public class DAOServico {
             } else if (pServico.getNmclienteServico() != null && !pServico.getNmclienteServico().equals("")) {
                 preparedStatement.setString(incremantadoParametros++, pServico.getNmclienteServico());
             }
-            if (pServico.getDiaEntradaServico() != null && !pServico.getDiaEntradaServico().equals("")) {
+            if ((pServico.getDiaEntradaServico() != null && !pServico.getDiaEntradaServico().equals(""))
+                    && (pServico.getDiaSaidaServico() != null && !pServico.getDiaSaidaServico().equals(""))) {
                 preparedStatement.setString(incremantadoParametros++, pServico.getDiaEntradaServico());
-            }
-            if (pServico.getDiaSaidaServico() != null && !pServico.getDiaSaidaServico().equals("")) {
                 preparedStatement.setString(incremantadoParametros++, pServico.getDiaSaidaServico());
+            } else {
+                if (pServico.getDiaEntradaServico() != null && !pServico.getDiaEntradaServico().equals("")) {
+                    preparedStatement.setString(incremantadoParametros++, pServico.getDiaEntradaServico());
+                }
+                if (pServico.getDiaSaidaServico() != null && !pServico.getDiaSaidaServico().equals("")) {
+                    preparedStatement.setString(incremantadoParametros++, pServico.getDiaSaidaServico());
+                }
             }
 
             resultset = preparedStatement.executeQuery();
@@ -238,6 +256,9 @@ public class DAOServico {
                     String numBandeja = resultset.getString("nuBandeja");
                     String strPago = resultset.getString("pago");
                     Integer isCasaLente = resultset.getInt("isLenteCasa");
+                    Integer isMontagem = resultset.getInt("isMontagem");
+                    Integer isSurfacagem = resultset.getInt("isSurfacagem");
+                    String osCliente = resultset.getString("osCliente");
 
                     Timestamp dhInclusao = resultset.getTimestamp("dataEntrada");
                     Timestamp dhSaida = resultset.getTimestamp("DataSaida");
@@ -253,6 +274,7 @@ public class DAOServico {
                     servico.setCodigoServico(Integer.toString(idServico));
                     servico.setNmclienteServico(nmCliente);
                     servico.setDiaEntradaServico(String.valueOf(dhInclusao));
+                    servico.setOsCliente(osCliente);
                     if (dhSaida != null) {
                         servico.setDiaSaidaServico(String.valueOf(dhSaida));
                     }
@@ -263,6 +285,16 @@ public class DAOServico {
                         servico.setIsLenteCasa(false);
                     } else {
                         servico.setIsLenteCasa(true);
+                    }
+                    if (isMontagem == 0) {
+                        servico.setIsMontagem(false);
+                    } else {
+                        servico.setIsMontagem(true);
+                    }
+                    if (isSurfacagem == 0) {
+                        servico.setIsSurfacagem(false);
+                    } else {
+                        servico.setIsSurfacagem(true);
                     }
                     arrayListServico.add(servico);
                 }
@@ -364,7 +396,7 @@ public class DAOServico {
         Connection connection = null;
 
         connection = DAO.getConexao();
-        String insert_sql = "INSERT INTO `distribuidora`.`servico`(`idservico`,`dataEntrada`,`pago`,`idstatus`,`idtipo_Lente`,`obs`,`idCliente`,`nuBandeja`,`isLenteCasa`,`isMontagem`,`isSurfacagem`)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String insert_sql = "INSERT INTO `distribuidora`.`servico`(`idservico`,`dataEntrada`,`pago`,`idstatus`,`idtipo_Lente`,`obs`,`idCliente`,`nuBandeja`,`isLenteCasa`,`isMontagem`,`isSurfacagem`, `osCliente`)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         //INSERT INTO `distribuidora`.`servico` (`idservico`, `dataEntrada`, `pago`, `idstatus`, `idtipo_Lente`, `obs`, `idCliente`, `nuBandeja`) VALUES ('4', '2021-03-23', '1', '2', '1', 'teste', '2', '5');
         PreparedStatement preparedStatement;
         try {
@@ -382,6 +414,7 @@ public class DAOServico {
             preparedStatement.setBoolean(9, pServico.getIsLenteCasa());
             preparedStatement.setBoolean(10, pServico.getIsMontagem());
             preparedStatement.setBoolean(11, pServico.getIsSurfacagem());
+            preparedStatement.setString(12, pServico.getOsCliente());
 
             preparedStatement.executeUpdate();
             fecharConexao(connection);

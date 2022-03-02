@@ -29,6 +29,15 @@ public class Servico {
     private Boolean isMontagem;
     private Boolean isSurfacagem;
     private String obs;
+    private String osCliente;
+
+    public String getOsCliente() {
+        return osCliente;
+    }
+
+    public void setOsCliente(String osCliente) {
+        this.osCliente = osCliente;
+    }
 
     public String getNumeroBandejaServico() {
         return numeroBandejaServico;

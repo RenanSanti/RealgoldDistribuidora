@@ -139,55 +139,60 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código do Serv.", "Nome Cliente", "Data Entrada", "Tipo de Lente", "Status", "Numero Bandeja", "Pago", "Data Saida", "Obs:", "Lente da Casa", "Montagem", "Surfacagem"
+                "Código do Serv.", "Nome Cliente", "OS Cliente", "Data Entrada", "Tipo de Lente", "Status", "Numero Bandeja", "Pago", "Data Saida", "Obs:", "Lente da Casa", "Montagem", "Surfacagem"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jTable1.setCellSelectionEnabled(true);
         jTable1.setFillsViewportHeight(true);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(10).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(11).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(12).setPreferredWidth(10);
+        }
 
         jButtonConsultar.setText("Consultar");
         jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -421,7 +426,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuCadastroClienteActionPerformed
 
     private void jBotaoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoRelatorioActionPerformed
-        
+        TelaRelatorio telaRelatorio = new TelaRelatorio();
+        telaRelatorio.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBotaoRelatorioActionPerformed
 
     private void jButtonIncluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirClienteActionPerformed
@@ -561,22 +568,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
             //Endereco endereco = getEnderecoPorCliente(clienteLista.getIdEndereco());
             row[0] = listServico.get(i).getCodigoServico();
             row[1] = listServico.get(i).getNmclienteServico();
+            row[2] = listServico.get(i).getOsCliente();
             String dataEntradaFormatada = Util.formatadorData(servicoLista.getDiaEntradaServico().substring(0, 10));
-            row[2] = dataEntradaFormatada;
+            row[3] = dataEntradaFormatada;
             //row[3] = listServico.get(i).getDiaSaidaServico();
-            row[3] = listServico.get(i).getDescricaoTipoLenteServico();
-            row[4] = listServico.get(i).getStatusServico();
-            row[5] = listServico.get(i).getNumeroBandejaServico();
-            row[6] = listServico.get(i).getPagoServico();
+            row[4] = listServico.get(i).getDescricaoTipoLenteServico();
+            row[5] = listServico.get(i).getStatusServico();
+            row[6] = listServico.get(i).getNumeroBandejaServico();
+            row[7] = listServico.get(i).getPagoServico();
             if(servicoLista.getDiaSaidaServico()!= null){
-                row[7] = Util.formatadorData(servicoLista.getDiaSaidaServico().substring(0, 10));
+                row[8] = Util.formatadorData(servicoLista.getDiaSaidaServico().substring(0, 10));
             }else{
-                row[7] = " - ";
+                row[8] = " - ";
             }
-            row[8] = listServico.get(i).getObs();
-            row[9] = servicoLista.getIsLenteCasa();
-            row[10] = servicoLista.getIsMontagem();
-            row[11] = servicoLista.getIsSurfacagem();
+            row[9] = listServico.get(i).getObs();
+            row[10] = servicoLista.getIsLenteCasa();
+            row[11] = servicoLista.getIsMontagem();
+            row[12] = servicoLista.getIsSurfacagem();
 
             model.addRow(row);
         }

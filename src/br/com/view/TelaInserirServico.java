@@ -399,6 +399,7 @@ public class TelaInserirServico extends javax.swing.JFrame {
         //String stComboBoxNomeCliente = "";
         String stComboBoxIdCliente = "";
         String stObs = "";
+        String osCliente = "";
         boolean stjCheckBoxLenteCasa = false;
         boolean stjCheckBoxPago = false;
         String stTipoLente = "";
@@ -436,6 +437,7 @@ public class TelaInserirServico extends javax.swing.JFrame {
 
         stjCheckBoxPago = jCheckBoxPago.isSelected();
         stObs = jTextAreaObservacao.getText();
+        osCliente = jTextOsCliente.getText();
 
         idServico = DAOServico.gerarSequencialIdServico();
         servico.setDiaEntradaServico(stDataEntrada);
@@ -447,6 +449,7 @@ public class TelaInserirServico extends javax.swing.JFrame {
         servico.setStatusServico("5");
         servico.setIsMontagem(stjCheckBoxMontagem);
         servico.setIsSurfacagem(stjCheckBoxSurfacagem);
+        servico.setOsCliente(osCliente);
         if (stjCheckBoxPago) {
             servico.setPagoServico("Pago");
         } else {
